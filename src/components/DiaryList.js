@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyButton from "./MyButton";
 import DiaryItem from "./DiaryItem";
+import PageNation from "./PageNation";
 
 const sortOptionList = [
     { value: "latest", name: "최신순"},
@@ -27,9 +28,15 @@ const ControlMenu = React.memo(({ value, onChange, optionList }) => {
 });
 
 const DiaryList = ({diaryList}) => {
+    //console.log("DiaryList load...");
     const navigate = useNavigate();
     const [sortType,setSortType]  = useState("latest");
     const [filter, setFilter] = useState("all");
+
+    const [page, setPage] = useState(0);
+    const [line, setLine] = useState(1);
+
+    const limit = 3;
 
     const getProcessedDiaryList = () => {
         const compare = (a, b) => {
@@ -52,7 +59,7 @@ const DiaryList = ({diaryList}) => {
         const filteredList = 
             filter === 'all' ? copyList : copyList.filter((it) => filterCallBack(it));
 
-
+        
         const sortedList = filteredList.sort(compare);
         
         return sortedList;
@@ -81,9 +88,17 @@ const DiaryList = ({diaryList}) => {
                     />
                 </div>
             </div>
-            {getProcessedDiaryList().map((it) => (
+            {getProcessedDiaryList().slice(page * limit, page * limit + limit).map((it) => (
                 <DiaryItem key={it.id} {...it} />
             ))}
+            <PageNation 
+                totalItem = {getProcessedDiaryList().length}
+                limit = {limit}
+                page = {page}
+                setPage = {setPage}
+                line = {line}
+                setLine = {setLine}
+            />
         </div>
     );
 };

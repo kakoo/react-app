@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 
 
-import MyHeader from './../components/MyHeader';
-import MyButton from './../components/MyButton';
-import DiaryList from "./../components/DiaryList";
+import MyHeader from '../components/MyHeader';
+import MyButton from '../components/MyButton';
+import DiaryList from "../components/DiaryList";
 import { DiaryStateContext } from "../App";
 
 const Home = () => {
@@ -39,7 +39,7 @@ const Home = () => {
     }, [diaryList, curDate]);
 
     useEffect(() => {
-        console.log(data);
+        //console.log(data);
     }, [data]);
 
     const increaseMonth = ()=>{
@@ -53,6 +53,8 @@ const Home = () => {
             new Date(curDate.getFullYear() , curDate.getMonth() - 1 , curDate.getDate())
         )
     };
+
+    console.log(user.name);
 
     return (
         <div>

@@ -361,3 +361,22 @@ header .head_btn_right {
   line-height: 2.5;
   font-weight: 400;
 }
+
+.PageNation {
+  text-align: center;
+}
+
+.PageNation .nowPage {
+  padding: 20px;
+  font-weight: bold;
+  color: #64c964;
+  font-family: "Yeon Sung";
+}
+
+.PageNation button {
+  padding: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: "Yeon Sung";
+}
